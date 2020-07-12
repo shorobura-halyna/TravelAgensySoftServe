@@ -13,7 +13,9 @@
     <title>Hello</title>
 </head>
 <body>
-<a href="/adminPanel">Admin panel</a><br>
+<a href="/adminPanel">Admin panel</a>
+<a href="/registration">Registration</a>
+<a href="/login">Login</a><br>
 
 <c:forEach var="hotel" items="${hotels}">
     ${hotel.name}

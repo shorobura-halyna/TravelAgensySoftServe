@@ -14,4 +14,10 @@ public class UserDaoImpl extends GeneralDaoImpl<User, Integer> implements UserDa
         setClazz(User.class);
     }
 
+    @Override
+    public User findByName(String login) {
+        return (User) getCurrentSession().createQuery("select u from User u where u.login=:login")
+                .setParameter("login", login)
+                .getSingleResult();
+    }
 }
