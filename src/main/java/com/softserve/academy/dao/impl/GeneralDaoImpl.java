@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -17,14 +16,15 @@ public class GeneralDaoImpl<T, D extends Number> extends AbstractDao<T, D> {
         this.sessionFactory = sessionFactory;
     }
 
-    @Transactional
+    /**
+     * Method does save and update
+     * */
     @Override
     public void save(T t) {
         getCurrentSession().save(t);
         getCurrentSession().flush();
     }
 
-    @Transactional
     @Override
     public T findOne(D id) {
         return (T) getCurrentSession()
@@ -33,19 +33,11 @@ public class GeneralDaoImpl<T, D extends Number> extends AbstractDao<T, D> {
                 .getSingleResult();
     }
 
-    @Transactional
     @Override
-    public List findAll() {
+    public List<T> findAll() {
         return getCurrentSession().createQuery("from " + clazz.getName()).list();
     }
 
-    @Transactional
-    @Override
-    public void update(T t) {
-
-    }
-
-    @Transactional
     @Override
     public void delete(D id) {
         getCurrentSession().createQuery("delete from " + clazz.getName() + " d where d.id =:id")

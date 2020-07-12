@@ -5,7 +5,10 @@ import com.softserve.academy.model.Room;
 import java.util.List;
 
 public interface RoomService {
-    void save (Room room);
+    void save (Room room, int hotelId);
     void delete (int id);
-    List<Room> getAll();
+    List<Room> getAllHotelRooms(int id);
+    Room getOne(int id);
+
+    void update(int id, int hotelId, int roomNumber);
 }

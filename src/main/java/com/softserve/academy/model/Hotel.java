@@ -1,5 +1,7 @@
 package com.softserve.academy.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +54,7 @@ public class Hotel {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
-//                ", rooms=" + rooms +
+                ", rooms=" + rooms +
                 '}';
     }
 }

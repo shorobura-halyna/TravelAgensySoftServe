@@ -20,10 +20,10 @@ public class HotelController {
     }
 
     @GetMapping("/createHotel")
-    public String save(Model model){
-        model.addAttribute("hotels", hotelService.getAll());
+    public String save(){
         return "createHotel";
     }
+
 
     @PostMapping("/createHotel")
     public String save(@RequestParam String name,
@@ -32,18 +32,26 @@ public class HotelController {
         hotel.setName(name);
         hotel.setAddress(address);
         hotelService.save(hotel);
-        return "redirect:/hotel";
+        return "redirect:/adminPanel";
     }
 
-    @GetMapping("/hotel")
-    public String user(Model model){
-        model.addAttribute("hotels", hotelService.getAll());
-        return "hotel";
+    @GetMapping("/updateHotel/{id}")
+    public String update(Model model, @PathVariable int id) {
+        model.addAttribute("oldHotel", hotelService.getOne(id));
+        return "updateHotel";
+    }
+
+    @PostMapping("/updateHotel/{id}")
+    public String update(@RequestParam String name,
+                         @RequestParam String address,
+                         @PathVariable int id){
+        hotelService.update(id, name, address);
+        return "redirect:/adminPanel";
     }
 
     @GetMapping("/deleteHotel/{id}")
     public String delete(@PathVariable int id){
         hotelService.delete(id);
-        return "redirect:/hotel";
+        return "redirect:/adminPanel";
     }
 }

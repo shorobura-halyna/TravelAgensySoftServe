@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: halyna
-  Date: 03.07.20
-  Time: 17:14
+  Date: 09.07.20
+  Time: 14:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,14 +10,20 @@
 
 <html>
 <head>
-    <title>Hello</title>
+    <title>Admin Index</title>
 </head>
 <body>
-<a href="/adminPanel">Admin panel</a><br>
-
+<a href="/createHotel">create hotel</a><br>
+<a href="/createRoom">create room</a>
+<br>
 <c:forEach var="hotel" items="${hotels}">
-    ${hotel.name}
+    ${hotel.id} ${hotel.name} ${hotel.address}
+    <a href="/updateHotel/${hotel.id}">update</a>
+    <a href="/deleteHotel/${hotel.id}">delete</a>
+    <a href="/roomInfo/${hotel.id}">room info</a>
     <br>
+
 </c:forEach>
+
 </body>
 </html>

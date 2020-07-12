@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: halyna
-  Date: 03.07.20
-  Time: 17:14
+  Date: 10.07.20
+  Time: 16:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,14 +10,13 @@
 
 <html>
 <head>
-    <title>Hello</title>
+    <title>Update Hotel</title>
 </head>
 <body>
-<a href="/adminPanel">Admin panel</a><br>
-
-<c:forEach var="hotel" items="${hotels}">
-    ${hotel.name}
-    <br>
-</c:forEach>
+<form action="/updateHotel/${oldHotel.id}" method="post">
+    <input value="${oldHotel.name}" name="name">
+    <input value="${oldHotel.address}" name="address">
+    <button>save</button>
+</form>
 </body>
 </html>

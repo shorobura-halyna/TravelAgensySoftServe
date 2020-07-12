@@ -1,10 +1,9 @@
 package com.softserve.academy.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -13,6 +12,9 @@ public class User {
     private int id;
     private String firstName;
     private String lastName;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "room_user", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_room"))
+    private List<Room> rooms = new ArrayList<>();
 
     public User(String firstName, String lastName) {
         this.firstName = firstName;
@@ -46,12 +48,21 @@ public class User {
         this.lastName = lastName;
     }
 
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+//                ", rooms=" + rooms +
                 '}';
     }
 }

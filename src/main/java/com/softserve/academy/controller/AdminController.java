@@ -7,18 +7,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class IndexController {
-    private  final HotelService hotelService;
+public class AdminController {
+    private final HotelService hotelService;
 
     @Autowired
-    public IndexController(HotelService hotelService) {
+    public AdminController(HotelService hotelService) {
         this.hotelService = hotelService;
     }
 
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("hotels",hotelService.getAll());
-        return "index";
+    @GetMapping("/adminPanel")
+    public String showHotel(Model model) {
+        model.addAttribute("hotels", hotelService.getAll());
+        return "adminPanel";
     }
-
 }
