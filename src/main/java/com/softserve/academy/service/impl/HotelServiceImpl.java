@@ -1,7 +1,9 @@
 package com.softserve.academy.service.impl;
 
+import com.softserve.academy.dao.CountryDao;
 import com.softserve.academy.dao.HotelDao;
 import com.softserve.academy.dao.RoomDao;
+import com.softserve.academy.model.Country;
 import com.softserve.academy.model.Hotel;
 import com.softserve.academy.model.Room;
 import com.softserve.academy.service.HotelService;
@@ -16,15 +18,19 @@ import java.util.List;
 public class HotelServiceImpl implements HotelService {
     private final HotelDao hotelDao;
     private final RoomDao roomDao;
+    private final CountryDao countryDao;
 
     @Autowired
-    public HotelServiceImpl(HotelDao hotelDao, RoomDao roomDao) {
+    public HotelServiceImpl(HotelDao hotelDao, RoomDao roomDao, CountryDao countryDao) {
         this.hotelDao = hotelDao;
         this.roomDao = roomDao;
+        this.countryDao = countryDao;
     }
 
     @Override
-    public void save(Hotel hotel) {
+    public void save(Hotel hotel, int countryId) {
+        Country country= countryDao.findOne(countryId);
+        hotel.setCountry(country);
         hotelDao.save(hotel);
     }
 

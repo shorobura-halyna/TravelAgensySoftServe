@@ -13,10 +13,17 @@
     <title>Create Hotel</title>
 </head>
 <body>
+<a href="/">home</a><br>
 <form action="/createHotel" method="post">
     <input name="name" placeholder="name">
     <input name="address" placeholder="address">
+    <select name="countryId">
+        <c:forEach var="country" items="${country}">
+            <option value="${country.id}">${country.name}</option>
+        </c:forEach>
+    </select>
     <button>save</button>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 </body>
 </html>

@@ -1,7 +1,5 @@
 package com.softserve.academy.model;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +11,8 @@ public class Hotel {
     private int id;
     private String name;
     private String address;
+    @ManyToOne
+    private Country country;
     @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY)
     private List<Room> rooms = new ArrayList<>();
 
@@ -48,13 +48,21 @@ public class Hotel {
         this.rooms = rooms;
     }
 
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
     @Override
     public String toString() {
         return "Hotel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", rooms=" + rooms +
+                ", country=" + country.getName() +
                 '}';
     }
 }

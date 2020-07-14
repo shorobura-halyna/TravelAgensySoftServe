@@ -19,28 +19,25 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/createUser")
-    public String save(Model model){
-        model.addAttribute("users", userService.getAll());
-        return "createUser";
+    @GetMapping("/registration")
+    public String registration() {
+        return "registration";
     }
 
-    @PostMapping("/createUser")
-    public String save(@RequestParam String firstName,
-                       @RequestParam String lastName){
-        userService.save(new User(firstName, lastName));
-        return "redirect:/user";
+    @PostMapping("/registration")
+    public String registration(@RequestParam String firstName,
+                               @RequestParam String lastName,
+                               @RequestParam String login,
+                               @RequestParam String password){
+        userService.save(new User(firstName, lastName, login, password));
+        return "redirect:/";
     }
 
     @GetMapping("/user")
-    public String user(Model model){
+    public String room(Model model) {
         model.addAttribute("users", userService.getAll());
         return "user";
     }
 
-    @GetMapping("/deleteUser/{id}")
-    public String delete(@PathVariable int id){
-        userService.delete(id);
-        return "redirect:/user";
-    }
+
 }

@@ -24,9 +24,11 @@ public class User implements UserDetails {
     @JoinTable(name = "room_user", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_room"))
     private List<Room> rooms = new ArrayList<>();
 
-    public User(String firstName, String lastName) {
+    public User(String firstName, String lastName, String login, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.login = login;
+        this.password = password;
     }
 
     public User() {
@@ -126,7 +128,8 @@ public class User implements UserDetails {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-//                ", rooms=" + rooms +
+                ", login='" + login + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

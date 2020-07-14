@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: halyna
-  Date: 09.07.20
-  Time: 12:13
+  Date: 13.07.20
+  Time: 22:28
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,18 +12,18 @@
 
 <html>
 <head>
-    <title>Room</title>
+    <title>Country</title>
 </head>
 <body>
 <sec:authorize access="hasRole('ROLE_ADMIN')">
-    <a href="/createRoom">create room</a><br>
+    <a href="/createCountry">create country</a><br>
     <a href="/">home</a><br>
 </sec:authorize>
 
-<c:forEach var="room" items="${rooms}">
-    ${room.id} ${room.roomNumber}
-    <a href="/updateRoom/${room.id}">update</a>
-    <a href="/deleteRoom/${room.hotel.id}/${room.id}">delete</a>
+<c:forEach var="country" items="${country}">
+    ${country.name}
+    <a href="/updateCountry/${country.id}">update</a>
+    <a href="/deleteCountry/${country.id}">delete</a>
     <br>
 </c:forEach>
 </body>

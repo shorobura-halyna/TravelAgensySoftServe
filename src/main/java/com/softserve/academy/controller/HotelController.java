@@ -1,6 +1,7 @@
 package com.softserve.academy.controller;
 
 import com.softserve.academy.model.Hotel;
+import com.softserve.academy.service.CountryService;
 import com.softserve.academy.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,26 +14,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HotelController {
     private final HotelService hotelService;
+    private final CountryService countryService;
 
     @Autowired
-    public HotelController(HotelService hotelService) {
+    public HotelController(HotelService hotelService, CountryService countryService) {
         this.hotelService = hotelService;
+        this.countryService = countryService;
     }
 
     @GetMapping("/createHotel")
-    public String save(){
+    public String save(Model model) {
+        model.addAttribute("country", countryService.getAll());
         return "createHotel";
     }
 
 
     @PostMapping("/createHotel")
     public String save(@RequestParam String name,
-                       @RequestParam String address){
+                       @RequestParam String address,
+                       @RequestParam int countryId) {
         Hotel hotel = new Hotel();
         hotel.setName(name);
         hotel.setAddress(address);
-        hotelService.save(hotel);
-        return "redirect:/adminPanel";
+        hotelService.save(hotel, countryId);
+        return "redirect:/hotel";
     }
 
     @GetMapping("/updateHotel/{id}")
@@ -44,14 +49,20 @@ public class HotelController {
     @PostMapping("/updateHotel/{id}")
     public String update(@RequestParam String name,
                          @RequestParam String address,
-                         @PathVariable int id){
+                         @PathVariable int id) {
         hotelService.update(id, name, address);
-        return "redirect:/adminPanel";
+        return "redirect:/hotel";
     }
 
     @GetMapping("/deleteHotel/{id}")
-    public String delete(@PathVariable int id){
+    public String delete(@PathVariable int id) {
         hotelService.delete(id);
-        return "redirect:/adminPanel";
+        return "redirect:/hotel";
+    }
+
+    @GetMapping("/hotel")
+    public String index(Model model) {
+        model.addAttribute("hotels", hotelService.getAll());
+        return "hotel";
     }
 }

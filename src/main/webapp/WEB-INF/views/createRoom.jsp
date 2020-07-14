@@ -13,6 +13,8 @@
     <title>Create Room</title>
 </head>
 <body>
+<a href="/">home</a><br>
+
 <form action="/createRoom" method="post">
     <input name="roomNumber" placeholder="room number">
     <select name="hotelId">
@@ -21,6 +23,7 @@
         </c:forEach>
     </select>
     <button>save</button>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 </body>
 </html>

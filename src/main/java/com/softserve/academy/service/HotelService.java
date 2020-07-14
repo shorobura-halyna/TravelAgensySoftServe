@@ -5,7 +5,7 @@ import com.softserve.academy.model.Hotel;
 import java.util.List;
 
 public interface HotelService {
-    void save(Hotel hotel);
+    void save(Hotel hotel, int countryId);
     void delete(int id);
     List<Hotel> getAll();
     Hotel getOne(int id);

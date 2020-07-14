@@ -34,6 +34,16 @@ public class RoomController {
         return "createRoom";
     }
 
+    @PostMapping("/createRoom")
+    public String save(@RequestParam int roomNumber,
+                       @RequestParam int hotelId) {
+        Room room = new Room();
+        room.setRoomNumber(roomNumber);
+        roomService.save(room, hotelId);
+//        return "redirect:/room";
+        return "redirect:/roomInfo/" + hotelId;
+    }
+
     @GetMapping("/updateRoom/{id}")
     public String update(Model model, @PathVariable int id) {
         model.addAttribute("oldRoom", roomService.getOne(id));
@@ -46,18 +56,8 @@ public class RoomController {
                          @RequestParam int hotelId,
                          @PathVariable int id){
         roomService.update(id, hotelId, roomNumber);
+//        return "redirect:/roomInfo/" + hotelId;
         return "redirect:/roomInfo/" + hotelId;
-    }
-
-
-    @PostMapping("/createRoom")
-
-    public String save(@RequestParam int roomNumber,
-                       @RequestParam int hotelId) {
-        Room room = new Room();
-        room.setRoomNumber(roomNumber);
-        roomService.save(room, hotelId);
-        return "redirect:/adminPanel";
     }
 
     @GetMapping("/deleteRoom/{hotelId}/{roomId}")

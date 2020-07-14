@@ -3,21 +3,27 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
+
     <import resource="appContext.xml"/>
+
     <security:http>
-        <security:form-login login-page="views/login.jsp"
+        <security:form-login login-page="/loginprocessing"
                              login-processing-url="/login"
                              password-parameter="password"
-                             username-parameter="login"/>
-        <security:intercept-url pattern="/" access="permitAll()"/>
-        <security:intercept-url pattern="/adminPanel/*" access="ROLE_ADMIN"/>
+                             username-parameter="login"
+                             authentication-failure-url="/"
+                             authentication-success-forward-url="/"/>
+
+        <security:intercept-url pattern="/*" access="permitAll()"/>
+<!--        <security:intercept-url pattern="/adminPanel/*" access="hasRole('ROLE_ADMIN')"/>-->
 
         <security:logout logout-url="/logout" logout-success-url="/"/>
     </security:http>
+
     <security:authentication-manager>
         <security:authentication-provider>
             <security:user-service>
-                <security:user name="admin" authorities="admin"/>
+                <security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN"/>
             </security:user-service>
         </security:authentication-provider>
         <security:authentication-provider user-service-ref="userServiceImpl">
@@ -25,6 +31,6 @@
         </security:authentication-provider>
     </security:authentication-manager>
 
-    <bean name="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 </beans>

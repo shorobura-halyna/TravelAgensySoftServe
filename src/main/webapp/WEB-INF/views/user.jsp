@@ -13,11 +13,11 @@
     <title>User</title>
 </head>
 <body>
-<a href="/createUser">create user</a>
-<a href="/updateUser">update user</a>
+<a href="/">home</a><br>
+
 <br>
 <c:forEach var="user" items="${users}">
-    ${user} <a href="/updateUser/${user.id}">update</a> <a href="/deleteUser/${user.id}">delete</a><br>
+    ${user} <br>
 </c:forEach>
 </body>
 </html>

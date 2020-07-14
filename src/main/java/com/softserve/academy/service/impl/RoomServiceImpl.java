@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class RoomServiceImpl implements RoomService {
     private final RoomDao roomDao;
     private final HotelDao hotelDao;
@@ -22,7 +23,6 @@ public class RoomServiceImpl implements RoomService {
         this.hotelDao = hotelDao;
     }
 
-    @Transactional
     @Override
     public void save(Room room, int hotelId) {
         Hotel hotel = hotelDao.findOne(hotelId);
@@ -30,26 +30,21 @@ public class RoomServiceImpl implements RoomService {
         roomDao.save(room);
     }
 
-    @Transactional
     @Override
     public void delete(int id) {
         roomDao.delete(id);
-
     }
 
-    @Transactional
     @Override
     public List<Room> getAllHotelRooms(int id) {
         return roomDao.getAllHotelRooms(id);
     }
 
-    @Transactional
     @Override
     public Room getOne(int id) {
         return roomDao.findOne(id);
     }
 
-    @Transactional
     @Override
     public void update(int id, int hotelId, int roomNumber) {
         Room room = roomDao.findOne(id);
