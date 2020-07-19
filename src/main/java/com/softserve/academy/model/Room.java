@@ -12,9 +12,8 @@ public class Room {
     private int roomNumber;
     @ManyToOne
     private Hotel hotel;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "room_user", joinColumns = @JoinColumn(name = "id_room"), inverseJoinColumns = @JoinColumn(name = "id_user"))
-    private List<User> users = new ArrayList<>();
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
+    private List<Booking> bookings = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -40,12 +39,12 @@ public class Room {
         this.hotel = hotel;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @Override
@@ -53,8 +52,6 @@ public class Room {
         return "Room{" +
                 "id=" + id +
                 ", roomNumber=" + roomNumber +
-                ", hotel=" + hotel.getName() +
-//                ", users=" + users +
                 '}';
     }
 }

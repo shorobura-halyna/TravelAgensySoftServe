@@ -6,6 +6,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
 @Repository
 public class UserDaoImpl extends GeneralDaoImpl<User, Integer> implements UserDao {
     @Autowired
@@ -19,5 +22,20 @@ public class UserDaoImpl extends GeneralDaoImpl<User, Integer> implements UserDa
         return (User) getCurrentSession().createQuery("select u from User u where u.login=:login")
                 .setParameter("login", login)
                 .getSingleResult();
+    }
+
+    @Override
+    public User loadUserWithBookings(int id) {
+        return (User) getCurrentSession()
+                .createQuery("select u from User u left join fetch u.bookings where u.id=:id")
+                .setParameter("id", id)
+                .getSingleResult();
+    }
+
+    @Override
+    public List<User> loadUsersWithBookings() {
+        return getCurrentSession()
+                .createQuery("select distinct u from User u left join fetch u.bookings")
+                .list();
     }
 }

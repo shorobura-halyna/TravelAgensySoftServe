@@ -1,6 +1,7 @@
 package com.softserve.academy.controller;
 
 import com.softserve.academy.model.Room;
+import com.softserve.academy.service.CountryService;
 import com.softserve.academy.service.HotelService;
 import com.softserve.academy.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RoomController {
     private final RoomService roomService;
     private final HotelService hotelService;
+    private final CountryService countryService;
 
     @Autowired
-    public RoomController(RoomService roomService, HotelService hotelService) {
+    public RoomController(RoomService roomService, HotelService hotelService, CountryService countryService) {
         this.roomService = roomService;
         this.hotelService = hotelService;
+        this.countryService = countryService;
     }
 
     @GetMapping("/roomInfo/{id}")
@@ -40,7 +43,6 @@ public class RoomController {
         Room room = new Room();
         room.setRoomNumber(roomNumber);
         roomService.save(room, hotelId);
-//        return "redirect:/room";
         return "redirect:/roomInfo/" + hotelId;
     }
 
@@ -54,9 +56,8 @@ public class RoomController {
     @PostMapping("/updateRoom/{id}")
     public String update(@RequestParam int roomNumber,
                          @RequestParam int hotelId,
-                         @PathVariable int id){
+                         @PathVariable int id) {
         roomService.update(id, hotelId, roomNumber);
-//        return "redirect:/roomInfo/" + hotelId;
         return "redirect:/roomInfo/" + hotelId;
     }
 

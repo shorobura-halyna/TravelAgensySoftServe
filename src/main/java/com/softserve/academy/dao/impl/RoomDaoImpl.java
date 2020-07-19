@@ -24,4 +24,12 @@ public class RoomDaoImpl extends GeneralDaoImpl<Room, Integer> implements RoomDa
                 .setParameter("id", id)
                 .list();
     }
+
+    @Override
+    public List<Room> getAllHotelRoomsWithBookings(int id) {
+        return getCurrentSession().createQuery("select r from Room r left join fetch r.bookings " +
+                "where r.hotel.id=:id")
+                .setParameter("id", id)
+                .list();
+    }
 }

@@ -8,4 +8,9 @@ public interface UserService {
     void save(User user);
     void delete (int id);
     List<User> getAll();
+    User getOne(int id);
+    User loadUserWithBookings(int id);
+    List<User> loadUsersWithBookings();
+
+
 }

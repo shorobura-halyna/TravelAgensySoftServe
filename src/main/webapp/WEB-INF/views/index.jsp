@@ -20,21 +20,43 @@
     <a href="/login">Login</a><br>
 </sec:authorize>
 <sec:authorize access="hasRole('ROLE_ADMIN')">
-    <a href="/hotel">hotels</a>
     <a href="/country">country</a>
+    <a href="/hotel">hotels</a>
     <a href="/user">user</a>
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">
+    <a href="/profile">profile</a>
     <form action="logout" method="post">
         <button>logout</button>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 </sec:authorize>
+    <form action="/showCountryHotels" method="get">
+        <select name="countryId">
+            <option value="1">choose country</option>
+            <c:forEach var="country" items="${countries}">
+                <option value="${country.id}">${country.name}</option>
+            </c:forEach>
+        </select>
+        <button>submit</button>
+    </form>
 
 
-<c:forEach var="hotel" items="${hotels}">
-    ${hotel.name}
-    <br>
-</c:forEach>
+<form action="/booking" method="get">
+    <select name="hotelId">
+        <option value="1">choose hotel</option>
+    <c:forEach var="hotel" items="${hotels}">
+        <option value="${hotel.id}">${hotel.country.name} ${hotel.name}</option>
+    </c:forEach>
+    </select>
+    <input name="dateFrom" type="date">
+    <input name="dateTo" type="date">
+    <button>submit</button>
+</form>
+
+<script>
+
+</script>
+
 </body>
 </html>

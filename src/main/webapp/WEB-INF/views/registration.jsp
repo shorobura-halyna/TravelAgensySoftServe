@@ -15,7 +15,7 @@
     <input name="firstName" placeholder="first name">
     <input name="lastName" placeholder="last name">
     <input name="login" placeholder="login">
-    <input name="password" placeholder="password">
+    <input name="password" type="password" placeholder="password">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <button>sign up</button>
 </form>

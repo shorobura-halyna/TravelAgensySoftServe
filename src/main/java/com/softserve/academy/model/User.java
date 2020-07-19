@@ -20,9 +20,8 @@ public class User implements UserDetails {
     private String password;
     @Enumerated
     private Role role;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "room_user", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_room"))
-    private List<Room> rooms = new ArrayList<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Booking> bookings = new ArrayList<>();
 
     public User(String firstName, String lastName, String login, String password) {
         this.firstName = firstName;
@@ -58,14 +57,6 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
-
     public String getLogin() {
         return login;
     }
@@ -82,6 +73,14 @@ public class User implements UserDetails {
         this.login = login;
     }
 
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> grantedAuthorities = new ArrayList<>();
@@ -95,7 +94,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return String.valueOf(id);
     }
 
     @Override
@@ -122,14 +121,4 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", login='" + login + '\'' +
-                ", role=" + role +
-                '}';
-    }
 }

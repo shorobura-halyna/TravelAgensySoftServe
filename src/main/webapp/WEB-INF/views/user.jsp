@@ -17,7 +17,12 @@
 
 <br>
 <c:forEach var="user" items="${users}">
-    ${user} <br>
+    ${user.firstName} ${user.lastName} ${user.login}
+    <br>
+    <c:forEach var="bookings" items="${user.bookings}">
+        Booking: room number: ${bookings.room.roomNumber}  from: ${bookings.dateFrom}  to: ${bookings.dateTo} <br>
+    </c:forEach>
+    <br>
 </c:forEach>
 </body>
 </html>

@@ -2,9 +2,11 @@ package com.softserve.academy.service.impl;
 
 import com.softserve.academy.dao.CountryDao;
 import com.softserve.academy.dao.HotelDao;
+import com.softserve.academy.dao.RoomDao;
 import com.softserve.academy.model.Country;
 import com.softserve.academy.model.Hotel;
 import com.softserve.academy.service.CountryService;
+import com.softserve.academy.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +18,22 @@ import java.util.List;
 public class CountryServiceImpl implements CountryService {
     public final CountryDao countryDao;
     public final HotelDao hotelDao;
+    public final HotelService hotelService;
 
     @Autowired
-    public CountryServiceImpl(CountryDao countryDao, HotelDao hotelDao) {
+    public CountryServiceImpl(CountryDao countryDao, HotelDao hotelDao, HotelService hotelService) {
         this.countryDao = countryDao;
         this.hotelDao = hotelDao;
+        this.hotelService = hotelService;
     }
 
     @Override
     public void delete(int id) {
         Country country = countryDao.findOne(id);
+
         for (Hotel hotel : country.getHotels()) {
-            hotelDao.delete(hotel.getId());
+            hotelService.delete(hotel.getId());
+//            hotelDao.delete(hotel.getId());
         }
         countryDao.delete(id);
     }

@@ -57,10 +57,17 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public void update(int id, String name, String address) {
+    public void update(int id, String name, String address, int countryId) {
         Hotel hotel = hotelDao.findOne(id);
+        Country country = countryDao.findOne(countryId);
         hotel.setName(name);
         hotel.setAddress(address);
+        hotel.setCountry(country);
         hotelDao.save(hotel);
+    }
+
+    @Override
+    public List<Hotel> getAllCountryHotel(int id) {
+        return hotelDao.getAllCountryHotel(id);
     }
 }

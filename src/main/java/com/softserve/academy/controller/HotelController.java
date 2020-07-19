@@ -1,15 +1,13 @@
 package com.softserve.academy.controller;
 
+import com.softserve.academy.model.Country;
 import com.softserve.academy.model.Hotel;
 import com.softserve.academy.service.CountryService;
 import com.softserve.academy.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HotelController {
@@ -43,14 +41,16 @@ public class HotelController {
     @GetMapping("/updateHotel/{id}")
     public String update(Model model, @PathVariable int id) {
         model.addAttribute("oldHotel", hotelService.getOne(id));
+        model.addAttribute("country", countryService.getAll());
         return "updateHotel";
     }
 
     @PostMapping("/updateHotel/{id}")
     public String update(@RequestParam String name,
                          @RequestParam String address,
+                         @RequestParam int countryId,
                          @PathVariable int id) {
-        hotelService.update(id, name, address);
+        hotelService.update(id, name, address, countryId);
         return "redirect:/hotel";
     }
 
@@ -65,4 +65,12 @@ public class HotelController {
         model.addAttribute("hotels", hotelService.getAll());
         return "hotel";
     }
+
+    @GetMapping("/showCountryHotels")
+    public String showCountryHotels(@RequestParam int countryId, Model model){
+        model.addAttribute("hotels", hotelService.getAllCountryHotel(countryId));
+        return "countryHotels";
+    }
+
+
 }
