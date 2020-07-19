@@ -15,7 +15,18 @@
                              authentication-success-forward-url="/"/>
 
         <security:intercept-url pattern="/*" access="permitAll()"/>
-<!--        <security:intercept-url pattern="/adminPanel/*" access="hasRole('ROLE_ADMIN')"/>-->
+        <security:intercept-url pattern="/updateCountry/*" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/deleteCountry/*" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/createCountry" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/createRoom" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/deleteRoom/*" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/updateRoom/*" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/deleteHotel/*" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/createHotel" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/updateHotel/*" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/roomInfo/*" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/user" access="hasRole('ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/profile" access="hasRole('ROLE_USER')"/>
 
         <security:logout logout-url="/logout" logout-success-url="/"/>
     </security:http>
@@ -23,7 +34,7 @@
     <security:authentication-manager>
         <security:authentication-provider>
             <security:user-service>
-                <security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN"/>
+                <security:user name="manager" password="{noop}manager" authorities="ROLE_MANAGER"/>
             </security:user-service>
         </security:authentication-provider>
         <security:authentication-provider user-service-ref="userServiceImpl">

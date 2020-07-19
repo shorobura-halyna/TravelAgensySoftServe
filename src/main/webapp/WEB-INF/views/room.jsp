@@ -15,14 +15,14 @@
     <title>Room</title>
 </head>
 <body>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
+<a href="/">home</a><br>
+<sec:authorize access="hasRole('ROLE_MANAGER')">
     <a href="/createRoom">create room</a><br>
-    <a href="/">home</a><br>
 </sec:authorize>
 
 <c:forEach var="room" items="${rooms}">
     ${room.id} ${room.roomNumber}
-    <sec:authorize access="hasRole('ROLE_ADMIN')">
+    <sec:authorize access="hasRole('ROLE_MANAGER')">
         <a href="/updateRoom/${room.id}">update</a>
         <a href="/deleteRoom/${room.hotel.id}/${room.id}">delete</a>
     </sec:authorize>

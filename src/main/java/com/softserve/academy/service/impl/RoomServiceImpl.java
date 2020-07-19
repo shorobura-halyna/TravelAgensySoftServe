@@ -1,5 +1,6 @@
 package com.softserve.academy.service.impl;
 
+import com.softserve.academy.dao.BookingDao;
 import com.softserve.academy.dao.HotelDao;
 import com.softserve.academy.dao.RoomDao;
 import com.softserve.academy.model.Booking;
@@ -20,11 +21,13 @@ import java.util.List;
 public class RoomServiceImpl implements RoomService {
     private final RoomDao roomDao;
     private final HotelDao hotelDao;
+    private final BookingDao bookingDao;
 
     @Autowired
-    public RoomServiceImpl(RoomDao roomDao, HotelDao hotelDao) {
+    public RoomServiceImpl(RoomDao roomDao, HotelDao hotelDao, BookingDao bookingDao) {
         this.roomDao = roomDao;
         this.hotelDao = hotelDao;
+        this.bookingDao = bookingDao;
     }
 
     @Override
@@ -36,6 +39,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void delete(int id) {
+        Room room = roomDao.findOne(id);
+        for (Booking booking : room.getBookings())
+        bookingDao.delete(booking.getId());
         roomDao.delete(id);
     }
 

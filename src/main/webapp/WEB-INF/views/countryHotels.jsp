@@ -13,6 +13,7 @@
     <title>Country hotels</title>
 </head>
 <body>
+<a href="/">home</a><br>
 <c:forEach var="hotel" items="${hotels}">
     ${hotel.name} ${hotel.address}
     <a href="/roomInfo/${hotel.id}">room info</a>

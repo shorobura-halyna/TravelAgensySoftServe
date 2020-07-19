@@ -11,6 +11,7 @@
     <title>Registration</title>
 </head>
 <body>
+<a href="/">home</a><br>
 <form action="/registration" method="post">
     <input name="firstName" placeholder="first name">
     <input name="lastName" placeholder="last name">

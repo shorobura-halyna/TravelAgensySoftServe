@@ -15,9 +15,9 @@
     <title>Hotels</title>
 </head>
 <body>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
+<a href="/">home</a><br>
+<sec:authorize access="hasRole('ROLE_MANAGER')">
     <a href="/createHotel">create hotel</a><br>
-    <a href="/">home</a><br>
 </sec:authorize>
 
 <br>

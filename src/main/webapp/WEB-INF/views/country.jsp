@@ -15,11 +15,8 @@
     <title>Country</title>
 </head>
 <body>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-    <a href="/createCountry">create country</a><br>
-    <a href="/">home</a><br>
-</sec:authorize>
-
+<a href="/">home</a><br>
+<a href="/createCountry">create country</a><br>
 <c:forEach var="country" items="${country}">
     ${country.name}
     <a href="/updateCountry/${country.id}">update</a>

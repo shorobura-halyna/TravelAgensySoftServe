@@ -14,6 +14,7 @@
     <title>Rooms</title>
 </head>
 <body>
+<a href="/">home</a><br>
 <c:forEach var="room" items="${rooms}">
     ${room}
     <sec:authorize access="isAuthenticated()">

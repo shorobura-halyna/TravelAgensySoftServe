@@ -13,6 +13,7 @@
     <title>User Profile</title>
 </head>
 <body>
+<a href="/">home</a><br>
 ${user.firstName} ${user.lastName} ${user.login}
 <br>
 <c:forEach var="booking" items="${user.bookings}">

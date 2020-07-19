@@ -11,6 +11,6 @@
     <title>Update profile</title>
 </head>
 <body>
-
+<a href="/">home</a><br>
 </body>
 </html>

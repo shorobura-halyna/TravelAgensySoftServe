@@ -11,6 +11,7 @@
     <title>Login</title>
 </head>
 <body>
+<a href="/">home</a><br>
 <form action="/login" method="post">
     <input name="login"  placeholder="login">
     <input name="password" placeholder="password">
