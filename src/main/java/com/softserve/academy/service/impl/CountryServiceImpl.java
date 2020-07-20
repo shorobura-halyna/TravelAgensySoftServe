@@ -29,7 +29,6 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public void delete(int id) {
         Country country = countryDao.findOne(id);
-
         for (Hotel hotel : country.getHotels()) {
             hotelService.delete(hotel.getId());
         }

@@ -29,7 +29,7 @@ public class CountryController {
         Country country = new Country();
         country.setName(name);
         countryService.save(country);
-        return "redirect: country";
+        return "redirect:/country";
     }
 
     @GetMapping("/country")

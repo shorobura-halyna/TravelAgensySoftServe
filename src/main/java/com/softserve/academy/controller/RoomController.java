@@ -16,13 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RoomController {
     private final RoomService roomService;
     private final HotelService hotelService;
-    private final CountryService countryService;
 
     @Autowired
-    public RoomController(RoomService roomService, HotelService hotelService, CountryService countryService) {
+    public RoomController(RoomService roomService, HotelService hotelService) {
         this.roomService = roomService;
         this.hotelService = hotelService;
-        this.countryService = countryService;
     }
 
     @GetMapping("/roomInfo/{id}")

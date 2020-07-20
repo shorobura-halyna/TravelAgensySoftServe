@@ -15,5 +15,5 @@ public interface HotelService {
 
     void update(int id, String name, String address, int countryId);
 
-    List<Hotel> getAllCountryHotel(int id);
+    List<Hotel> getAllCountryHotels(int id);
 }

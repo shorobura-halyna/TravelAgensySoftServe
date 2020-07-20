@@ -18,7 +18,7 @@ public class HotelDaoImpl extends GeneralDaoImpl<Hotel, Integer> implements Hote
     }
 
     @Override
-    public List<Hotel> getAllCountryHotel(int id) {
+    public List<Hotel> getAllCountryHotels(int id) {
         return getCurrentSession().createQuery("select h from Hotel h where h.country.id=:id")
                 .setParameter("id", id)
                 .list();

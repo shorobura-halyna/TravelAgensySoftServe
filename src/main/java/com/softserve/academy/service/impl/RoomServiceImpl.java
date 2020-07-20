@@ -77,7 +77,6 @@ public class RoomServiceImpl implements RoomService {
                 availableRooms.add(room);
             }
         }
-
         return availableRooms;
     }
 

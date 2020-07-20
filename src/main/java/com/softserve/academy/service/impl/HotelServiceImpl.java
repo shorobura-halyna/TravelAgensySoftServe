@@ -67,7 +67,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<Hotel> getAllCountryHotel(int id) {
-        return hotelDao.getAllCountryHotel(id);
+    public List<Hotel> getAllCountryHotels(int id) {
+        return hotelDao.getAllCountryHotels(id);
     }
 }

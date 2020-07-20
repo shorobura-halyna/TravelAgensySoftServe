@@ -70,7 +70,7 @@ public class HotelController {
 
     @GetMapping("/showCountryHotels")
     public String showCountryHotels(@RequestParam int countryId, Model model) {
-        model.addAttribute("hotels", hotelService.getAllCountryHotel(countryId));
+        model.addAttribute("hotels", hotelService.getAllCountryHotels(countryId));
         return "countryHotels";
     }
 }
