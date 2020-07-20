@@ -41,7 +41,7 @@ public class RoomServiceImpl implements RoomService {
     public void delete(int id) {
         Room room = roomDao.findOne(id);
         for (Booking booking : room.getBookings())
-        bookingDao.delete(booking.getId());
+            bookingDao.delete(booking.getId());
         roomDao.delete(id);
     }
 
@@ -69,7 +69,7 @@ public class RoomServiceImpl implements RoomService {
         for (Room room : rooms) {
             boolean isRoomAvailable = true;
             for (Booking booking : room.getBookings()) {
-                if(!booking.getDateTo().isBefore(from) && !booking.getDateFrom().isAfter(to)) {
+                if (!booking.getDateTo().isBefore(from) && !booking.getDateFrom().isAfter(to)) {
                     isRoomAvailable = false;
                 }
             }
@@ -85,6 +85,4 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> getAllHotelRooms(int id) {
         return roomDao.getAllHotelRooms(id);
     }
-
-
 }

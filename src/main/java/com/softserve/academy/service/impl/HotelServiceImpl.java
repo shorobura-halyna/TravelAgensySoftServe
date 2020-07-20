@@ -29,14 +29,14 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void save(Hotel hotel, int countryId) {
-        Country country= countryDao.findOne(countryId);
+        Country country = countryDao.findOne(countryId);
         hotel.setCountry(country);
         hotelDao.save(hotel);
     }
 
     /**
      * Method deletes hotel with rooms
-     * */
+     */
     @Override
     public void delete(int id) {
         Hotel hotel = hotelDao.findOne(id);

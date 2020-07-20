@@ -20,12 +20,12 @@ public class CountryController {
     }
 
     @GetMapping("/createCountry")
-    public String save(){
+    public String save() {
         return "createCountry";
     }
 
     @PostMapping("/createCountry")
-    public String save(@RequestParam String name){
+    public String save(@RequestParam String name) {
         Country country = new Country();
         country.setName(name);
         countryService.save(country);
@@ -39,10 +39,11 @@ public class CountryController {
     }
 
     @GetMapping("/deleteCountry/{id}")
-    public String delete(@PathVariable int id){
+    public String delete(@PathVariable int id) {
         countryService.delete(id);
         return "redirect:/country";
     }
+
     @GetMapping("/updateCountry/{id}")
     public String update(Model model, @PathVariable int id) {
         model.addAttribute("oldCountry", countryService.getOne(id));
@@ -51,7 +52,7 @@ public class CountryController {
 
     @PostMapping("/updateCountry/{id}")
     public String update(@RequestParam String name,
-                         @PathVariable int id){
+                         @PathVariable int id) {
         countryService.update(id, name);
         return "redirect:/country";
     }

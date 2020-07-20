@@ -38,7 +38,7 @@ public class BookingController {
                            @PathVariable String dateFrom,
                            @PathVariable String dateTo,
                            Principal principal) {
-        bookingService.bookRoom(Integer.parseInt(principal.getName()), idRoom, dateFrom,dateTo);
+        bookingService.bookRoom(Integer.parseInt(principal.getName()), idRoom, dateFrom, dateTo);
         return "redirect:/profile";
     }
 

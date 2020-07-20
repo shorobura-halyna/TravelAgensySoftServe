@@ -6,8 +6,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public class BookingDaoImpl extends GeneralDaoImpl<Booking, Integer> implements BookingDao {
     @Autowired
@@ -15,5 +13,4 @@ public class BookingDaoImpl extends GeneralDaoImpl<Booking, Integer> implements 
         super(sessionFactory);
         setClazz(Booking.class);
     }
-
 }

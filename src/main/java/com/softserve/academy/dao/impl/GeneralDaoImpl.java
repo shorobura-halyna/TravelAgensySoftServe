@@ -18,7 +18,7 @@ public class GeneralDaoImpl<T, D extends Number> extends AbstractDao<T, D> {
 
     /**
      * Method does save and update
-     * */
+     */
     @Override
     public void save(T t) {
         getCurrentSession().save(t);

@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface CountryService {
     void delete(int id);
-    void save (Country country);
+
+    void save(Country country);
+
     Country getOne(int id);
+
     List<Country> getAll();
+
     void update(int id, String name);
 }

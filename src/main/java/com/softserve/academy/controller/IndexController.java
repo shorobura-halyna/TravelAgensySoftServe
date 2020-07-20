@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class IndexController {
-    private  final HotelService hotelService;
+    private final HotelService hotelService;
     private final CountryService countryService;
 
     @Autowired
@@ -32,7 +32,7 @@ public class IndexController {
     }
 
     @PostMapping("/logout")
-    public String logout(){
+    public String logout() {
         return "redirect:/";
     }
 

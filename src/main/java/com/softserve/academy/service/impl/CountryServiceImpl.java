@@ -2,7 +2,6 @@ package com.softserve.academy.service.impl;
 
 import com.softserve.academy.dao.CountryDao;
 import com.softserve.academy.dao.HotelDao;
-import com.softserve.academy.dao.RoomDao;
 import com.softserve.academy.model.Country;
 import com.softserve.academy.model.Hotel;
 import com.softserve.academy.service.CountryService;
@@ -33,7 +32,6 @@ public class CountryServiceImpl implements CountryService {
 
         for (Hotel hotel : country.getHotels()) {
             hotelService.delete(hotel.getId());
-//            hotelDao.delete(hotel.getId());
         }
         countryDao.delete(id);
     }
@@ -55,8 +53,8 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public void update(int id, String name) {
-      Country country = countryDao.findOne(id);
-      country.setName(name);
-      countryDao.save(country);
+        Country country = countryDao.findOne(id);
+        country.setName(name);
+        countryDao.save(country);
     }
 }
